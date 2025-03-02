@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>                                                          
+                                                        <!-- Clock Project -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timing Clock</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            
+        }
+        html,body{
+            height:100%;
+            width:100%;
+        }
+        .main{
+            
+            display: flex;
+            justify-content: center;
+            margin-top: 100px;
+        }
+        #clock_container
+        {
+            height: 500px;
+            width: 600px;
+            border-radius: 20px;
+            background-image: url("https://4kwallpapers.com/images/walls/thumbs_3t/8324.png");
+            opacity: 85%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #clock{
+
+            backdrop-filter: blur(50px);
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 25px;
+            color: rgba(255, 255, 255, 0.681);
+            font-family: sans-serif;
+            font-size: 5rem;
+            font-weight: 600;
+            padding: 10px;
+        }
+
+        @media screen and (max-width:480px){
+            
+            #clock_container
+            {
+               max-width: 100%;
+               max-height: 100%;
+               background-image: url("https://images.unsplash.com/photo-1736608332755-d0a1be241cee?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzMnx8fGVufDB8fHx8fA%3D%3D");
+            opacity: 85%;
+                background-size: cover;
+
+            }
+            #clock{
+    
+                backdrop-filter: blur(65px);
+                border-radius: 10px;
+                color: rgb(36, 42, 35);
+                font-family: sans-serif;
+                font-size: 3.8rem;
+                font-weight: 500;
+            }
+    
+        }
+
+  
+    </style>
+</head>
+<body>
+    <h5>Project - 02</h5>
+    <div class="main">
+        
+        <div id="clock_container">
+            <div id="clock">
+                00:00:00
+            </div>
+        </div>
+    </div>
+    
+
+    <script>
+        function updateClock(){
+            const now = new Date();
+            let hours = now.getHours();
+            let meridiem = hours >= 12 ? "PM" : "AM";
+            hours = hours % 12 || 12 ;
+            hours = hours.toString().padStart(2,0);
+
+            const minuts = now.getMinutes().toString().padStart(2,0);
+            const second = now.getSeconds().toString().padStart(2,0);
+
+            const timestring = `${hours}:${minuts}:${second} - ${meridiem}`;
+
+            document.getElementById("clock").textContent = timestring;
+
+        }
+        updateClock();
+        setInterval(updateClock,1000);
+    </script>
+</body>
+</html>
